@@ -59,7 +59,7 @@
 
     header .left-menu a {
         color: #aaaaaa;
-               text-decoration: none;
+        text-decoration: none;
         font-size: 18px;
         font-weight: 500;
         transition: all 0.25s ease;
@@ -329,29 +329,31 @@
         display: flex;
     }
 
+    /* ✅ X PEQUENO NO CANTO SUPERIOR ESQUERDO — para todos os modais */
     .close-btn {
         position: absolute;
         top: 15px;
-        right: 15px;
-        background: #e2231a;
+        left: 15px; /* ← Canto ESQUERDO (antes era right) */
+        background: rgba(30, 30, 30, 0.8); /* Fundo mais escuro e discreto */
         border: none;
-        color: white;
-        font-size: 24px;
+        color: #ffffff;
+        font-size: 18px; /* ← Menor (antes era 24px) */
         font-weight: bold;
-        width: 50px;
-        height: 50px;
+        width: 36px; /* ← Menor (antes era 50px) */
+        height: 36px; /* ← Menor (antes era 50px) */
         border-radius: 50%;
         cursor: pointer;
         z-index: 100000;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 0 15px rgba(226, 35, 26, 0.5);
-        transition: transform 0.2s;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+        transition: all 0.2s ease;
     }
 
     .close-btn:hover {
-        transform: scale(1.15);
+        background: rgba(226, 35, 26, 0.9);
+        transform: scale(1.1); /* ← Aumenta um pouquinho ao passar o mouse */
     }
 
     .fullscreen-iframe {
@@ -407,6 +409,14 @@
             right: 20px;
             transform: translateY(-50%) scale(0.85);
         }
+        /* Responsivo: X menor ainda no celular */
+        .close-btn {
+            width: 32px;
+            height: 32px;
+            font-size: 16px;
+            top: 10px;
+            left: 10px;
+        }
     }
   </style>
 </head>
@@ -460,13 +470,14 @@
       <div class="game-cover" data-index="9">
         <img src="assets/images/capa-fnaf.jpg" alt="Five Nights At Freddy's">
       </div>
-      <!-- 🆕 EAGLERCRAFT 1.20.6 -->
       <div class="game-cover" data-index="10">
         <img src="assets/images/capa-eaglercraft.jpg" alt="Eaglercraft 1.20.6">
       </div>
-      <!-- 🆕 AMONG US -->
       <div class="game-cover" data-index="11">
         <img src="assets/images/capa-amongus.jpg" alt="Among Us">
+      </div>
+      <div class="game-cover" data-index="12">
+        <img src="assets/images/capa-stopots.jpg" alt="Stopots">
       </div>
     </div>
   </div>
@@ -499,6 +510,7 @@
   </div>
 
   <div class="game-modal" id="game-modal">
+    <!-- ✅ X PEQUENO NO CANTO ESQUERDO -->
     <button class="close-btn" id="close-modal-btn">×</button>
     <iframe 
       src="" 
@@ -569,7 +581,6 @@
           conquistas: "—", 
           iframeUrl: "https://fivenightsatfreddys-fnaf.io/fnaf-1-unblocked/" 
         },
-        // 🆕 EAGLERCRAFT 1.20.6
         { 
           nome: "Eaglercraft™ | 1.20.6", 
           fundo: "assets/images/fundo-eaglercraft.jpg", 
@@ -578,7 +589,6 @@
           conquistas: "—", 
           iframeUrl: "https://eymenwsmc.site/120/?v=20260824-5430efd6" 
         },
-        // 🆕 AMONG US
         { 
           nome: "Among Us™ | Online", 
           fundo: "assets/images/fundo-amongus.jpg", 
@@ -586,6 +596,14 @@
           progresso: "—", 
           conquistas: "—", 
           iframeUrl: "https://amongusplay.online/" 
+        },
+        { 
+          nome: "Stopots™ | Jogos Online", 
+          fundo: "assets/images/fundo-stopots.jpg", 
+          capa: "assets/images/capa-stopots.jpg", 
+          progresso: "—", 
+          conquistas: "—", 
+          iframeUrl: "https://m.stopots.com/pt" 
         }
     ];
 
@@ -632,7 +650,6 @@
     playBtn.addEventListener('click', () => {
         const jogoAtual = jogos[currentIndex];
         if (jogoAtual.iframeUrl) {
-            // ✅ Abre o jogo em TELA CHEIA no iframe
             gameIframe.src = jogoAtual.iframeUrl;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -678,4 +695,3 @@
 
 </body>
 </html>
-
