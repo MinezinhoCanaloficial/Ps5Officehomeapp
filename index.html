@@ -329,18 +329,17 @@
         display: flex;
     }
 
-    /* ✅ X PEQUENO NO CANTO SUPERIOR ESQUERDO — para todos os modais */
     .close-btn {
         position: absolute;
         top: 15px;
-        left: 15px; /* ← Canto ESQUERDO (antes era right) */
-        background: rgba(30, 30, 30, 0.8); /* Fundo mais escuro e discreto */
+        left: 15px;
+        background: rgba(30, 30, 30, 0.8);
         border: none;
         color: #ffffff;
-        font-size: 18px; /* ← Menor (antes era 24px) */
+        font-size: 18px;
         font-weight: bold;
-        width: 36px; /* ← Menor (antes era 50px) */
-        height: 36px; /* ← Menor (antes era 50px) */
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         cursor: pointer;
         z-index: 100000;
@@ -353,7 +352,7 @@
 
     .close-btn:hover {
         background: rgba(226, 35, 26, 0.9);
-        transform: scale(1.1); /* ← Aumenta um pouquinho ao passar o mouse */
+        transform: scale(1.1);
     }
 
     .fullscreen-iframe {
@@ -362,7 +361,7 @@
         border: none;
         display: block;
         flex: 1;
-        allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; gamepad *";
         sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox";
     }
 
@@ -409,7 +408,6 @@
             right: 20px;
             transform: translateY(-50%) scale(0.85);
         }
-        /* Responsivo: X menor ainda no celular */
         .close-btn {
             width: 32px;
             height: 32px;
@@ -479,6 +477,15 @@
       <div class="game-cover" data-index="12">
         <img src="assets/images/capa-stopots.jpg" alt="Stopots">
       </div>
+      <div class="game-cover" data-index="13">
+        <img src="assets/images/capa-freefire.jpg" alt="Free Fire">
+      </div>
+      <div class="game-cover" data-index="14">
+        <img src="assets/images/capa-roblox.jpg" alt="Roblox">
+      </div>
+      <div class="game-cover" data-index="15">
+        <img src="assets/images/capa-escapewaves.jpg" alt="EscapeWaves.io">
+      </div>
     </div>
   </div>
 
@@ -510,14 +517,13 @@
   </div>
 
   <div class="game-modal" id="game-modal">
-    <!-- ✅ X PEQUENO NO CANTO ESQUERDO -->
     <button class="close-btn" id="close-modal-btn">×</button>
     <iframe 
       src="" 
       class="fullscreen-iframe"
       id="game-iframe"
       allowfullscreen
-      allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; gamepad *"
       scrolling="no">
     </iframe>
   </div>
@@ -561,7 +567,7 @@
         { nome: "Like a Dragon™ | PS5", fundo: "assets/images/fundo-like-a-dragon.jpg", capa: "assets/images/capa-like-a-dragon.jpg", progresso: "45%", conquistas: "15/35" },
         { nome: "DIRT 5™ | PS5", fundo: "assets/images/fundo-dirt5.jpg", capa: "assets/images/capa-dirt5.jpg", progresso: "6%", conquistas: "3/21" },
         { nome: "God of War™ | PS5", fundo: "assets/images/fundo-god-of-war.jpg", capa: "assets/images/capa-god-of-war.jpg", progresso: "78%", conquistas: "24/36" },
-        { nome: "Marvel's Spider-Man™ | PS5", fundo: "assets/images/fundo-spider-man.jpg", capa: "assets/images/capa-spider-man.jpg", progresso: "32%", conquistas: "12/42", iframeUrl: "https://jogos101.com/g/spider-man-web-shooter/embed" },
+        { nome: "Marvel's Spider-Man™ | PS5", fundo: "assets/images/fundo-spider-man.jpg", capa: "assets/images/capa-spider-man.jpg", progresso: "32%", conquistas: "12/42", iframeUrl: "https://www.crazygames.com/br/game/spider-hero-street-fight" },
         { nome: "Horizon Forbidden West™ | PS5", fundo: "assets/images/fundo-horizon.jpg", capa: "assets/images/capa-horizon.jpg", progresso: "55%", conquistas: "18/58" },
         { nome: "Ratchet & Clank™ | PS5", fundo: "assets/images/fundo-ratchet-clank.jpg", capa: "assets/images/capa-ratchet-clank.jpg", progresso: "20%", conquistas: "7/32" },
         { nome: "Rocket Goal.io | Jogo", fundo: "assets/images/fundo-rocket-goal.jpg", capa: "assets/images/capa-rocket-goal.jpg", progresso: "—", conquistas: "—", iframeUrl: "https://rocketgoal.io" },
@@ -604,6 +610,30 @@
           progresso: "—", 
           conquistas: "—", 
           iframeUrl: "https://m.stopots.com/pt" 
+        },
+        { 
+          nome: "Free Fire™ | 9º Aniversário", 
+          fundo: "assets/images/fundo-freefire.jpg", 
+          capa: "assets/images/capa-freefire.jpg", 
+          progresso: "—", 
+          conquistas: "—", 
+          iframeUrl: "https://web.cloudmoonapp.com/pt/game/com.dts.freefireth/?from=list" 
+        },
+        { 
+          nome: "Roblox™ | Metaverso", 
+          fundo: "assets/images/fundo-roblox.jpg", 
+          capa: "assets/images/capa-roblox.jpg", 
+          progresso: "—", 
+          conquistas: "—", 
+          iframeUrl: "https://web.cloudmoonapp.com/pt/game/com.roblox.client/?from=list" 
+        },
+        { 
+          nome: "EscapeWaves.io | Tsunami Brainrot", 
+          fundo: "assets/images/fundo-escapewaves.jpg", 
+          capa: "assets/images/capa-escapewaves.jpg", 
+          progresso: "—", 
+          conquistas: "—", 
+          iframeUrl: "https://escapewaves.io/" 
         }
     ];
 
@@ -695,3 +725,4 @@
 
 </body>
 </html>
+
