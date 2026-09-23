@@ -20,6 +20,82 @@
         overflow: hidden;
     }
 
+    /* TELA INICIAL — fundo GIF + botão */
+    .start-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('assets/gifs/gif-fundo-ps5') no-repeat center center fixed;
+        background-size: cover;
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .start-screen.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .ps5-new-user {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    .outer-ring {
+        width: 104px;
+        height: 104px;
+        border-radius: 50%;
+        border: 3px solid #000000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.25s ease;
+        background: rgba(42, 42, 44, 0.3);
+    }
+
+    .circle-btn {
+        width: 88px;
+        height: 88px;
+        border-radius: 50%;
+        background: #2a2a2c;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.25s ease;
+    }
+
+    .ps5-new-user:hover .outer-ring {
+        transform: scale(1.05);
+    }
+    .ps5-new-user:hover .circle-btn {
+        background: #38383a;
+    }
+
+    .plus-icon {
+        color: #ffffff;
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 1;
+    }
+
+    .btn-label {
+        color: #e8e8e8;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+    }
+
+    /* FUNDO DINÂMICO DOS JOGOS */
     .game-bg {
         position: absolute;
         top: 0;
@@ -30,6 +106,12 @@
         background-size: cover;
         z-index: 0;
         transition: background-image 0.6s ease-in-out;
+        opacity: 0;
+        transition: opacity 0.8s ease, background-image 0.6s ease-in-out;
+    }
+
+    .game-bg.visible {
+        opacity: 1;
     }
 
     .bg-overlay {
@@ -40,6 +122,12 @@
         height: 100%;
         background: linear-gradient(to right, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.1) 100%);
         z-index: 1;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+    }
+
+    .bg-overlay.visible {
+        opacity: 1;
     }
 
     header {
@@ -49,6 +137,14 @@
         justify-content: space-between;
         align-items: center;
         padding: 25px 50px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.8s ease;
+    }
+
+    header.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     header .left-menu {
@@ -130,6 +226,14 @@
         overflow: hidden;
         z-index: 10;
         pointer-events: none;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease 0.1s;
+    }
+
+    .carousel-viewport.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .games-carousel {
@@ -183,6 +287,14 @@
         color: #ffffff;
         z-index: 10;
         text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.8s ease 0.2s;
+    }
+
+    .game-name.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .play-button {
@@ -193,6 +305,14 @@
         display: flex;
         align-items: center;
         gap: 15px;
+        opacity: 0;
+        transform: translateY(15px);
+        transition: all 0.8s ease 0.3s;
+    }
+
+    .play-button.visible {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .play-btn {
@@ -247,6 +367,14 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        opacity: 0;
+        transform: translateY(-50%) translateX(20px);
+        transition: all 0.8s ease 0.4s;
+    }
+
+    .side-info.visible {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
     }
 
     .game-card {
@@ -332,27 +460,26 @@
     .close-btn {
         position: absolute;
         top: 15px;
-        left: 15px;
-        background: rgba(30, 30, 30, 0.8);
+        right: 15px;
+        background: #e2231a;
         border: none;
-        color: #ffffff;
-        font-size: 18px;
+        color: white;
+        font-size: 24px;
         font-weight: bold;
-        width: 36px;
-        height: 36px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         cursor: pointer;
         z-index: 100000;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-        transition: all 0.2s ease;
+        box-shadow: 0 0 15px rgba(226, 35, 26, 0.5);
+        transition: transform 0.2s;
     }
 
     .close-btn:hover {
-        background: rgba(226, 35, 26, 0.9);
-        transform: scale(1.1);
+        transform: scale(1.15);
     }
 
     .fullscreen-iframe {
@@ -361,7 +488,7 @@
         border: none;
         display: block;
         flex: 1;
-        allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; gamepad *";
+        allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox";
     }
 
@@ -408,22 +535,28 @@
             right: 20px;
             transform: translateY(-50%) scale(0.85);
         }
-        .close-btn {
-            width: 32px;
-            height: 32px;
-            font-size: 16px;
-            top: 10px;
-            left: 10px;
-        }
     }
   </style>
 </head>
 <body>
 
-  <div class="game-bg" id="game-bg"></div>
-  <div class="bg-overlay"></div>
+  <!-- TELA INICIAL — só aparece no começo -->
+  <div class="start-screen" id="start-screen">
+    <div class="ps5-new-user" id="new-user-btn">
+      <div class="outer-ring">
+        <div class="circle-btn">
+          <span class="plus-icon">+</span>
+        </div>
+      </div>
+      <span class="btn-label">New User</span>
+    </div>
+  </div>
 
-  <header>
+  <!-- INTERFACE PRINCIPAL — escondida no início -->
+  <div class="game-bg" id="game-bg"></div>
+  <div class="bg-overlay" id="bg-overlay"></div>
+
+  <header id="main-header">
     <div class="left-menu">
       <a href="#">Jogos</a>
       <a href="#">Conteúdo Multimídia</a>
@@ -436,7 +569,7 @@
     </div>
   </header>
 
-  <div class="carousel-viewport">
+  <div class="carousel-viewport" id="carousel-viewport">
     <div class="games-carousel" id="carousel">
       <div class="game-cover" data-index="0">
         <img src="assets/images/capa-demons-souls.jpg" alt="Demon's Souls">
@@ -471,27 +604,12 @@
       <div class="game-cover" data-index="10">
         <img src="assets/images/capa-eaglercraft.jpg" alt="Eaglercraft 1.20.6">
       </div>
-      <div class="game-cover" data-index="11">
-        <img src="assets/images/capa-amongus.jpg" alt="Among Us">
-      </div>
-      <div class="game-cover" data-index="12">
-        <img src="assets/images/capa-stopots.jpg" alt="Stopots">
-      </div>
-      <div class="game-cover" data-index="13">
-        <img src="assets/images/capa-freefire.jpg" alt="Free Fire">
-      </div>
-      <div class="game-cover" data-index="14">
-        <img src="assets/images/capa-roblox.jpg" alt="Roblox">
-      </div>
-      <div class="game-cover" data-index="15">
-        <img src="assets/images/capa-escapewaves.jpg" alt="EscapeWaves.io">
-      </div>
     </div>
   </div>
 
   <div class="game-name" id="game-title">DIRT 5™ | PS5</div>
 
-  <div class="play-button">
+  <div class="play-button" id="play-button-container">
     <button class="play-btn" id="play-game-btn">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
         <rect x="0" y="0" width="320" height="80" rx="40" fill="#00439C" />
@@ -523,12 +641,12 @@
       class="fullscreen-iframe"
       id="game-iframe"
       allowfullscreen
-      allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; gamepad *"
+      allow="autoplay; fullscreen; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       scrolling="no">
     </iframe>
   </div>
 
-  <div class="side-info">
+  <div class="side-info" id="side-info-container">
     <div class="game-card">
       <img src="assets/images/capa-dirt5.jpg" alt="DIRT 5" id="side-cover">
       <div class="labels">
@@ -567,7 +685,7 @@
         { nome: "Like a Dragon™ | PS5", fundo: "assets/images/fundo-like-a-dragon.jpg", capa: "assets/images/capa-like-a-dragon.jpg", progresso: "45%", conquistas: "15/35" },
         { nome: "DIRT 5™ | PS5", fundo: "assets/images/fundo-dirt5.jpg", capa: "assets/images/capa-dirt5.jpg", progresso: "6%", conquistas: "3/21" },
         { nome: "God of War™ | PS5", fundo: "assets/images/fundo-god-of-war.jpg", capa: "assets/images/capa-god-of-war.jpg", progresso: "78%", conquistas: "24/36" },
-        { nome: "Marvel's Spider-Man™ | PS5", fundo: "assets/images/fundo-spider-man.jpg", capa: "assets/images/capa-spider-man.jpg", progresso: "32%", conquistas: "12/42", iframeUrl: "https://www.crazygames.com/br/game/spider-hero-street-fight" },
+        { nome: "Marvel's Spider-Man™ | PS5", fundo: "assets/images/fundo-spider-man.jpg", capa: "assets/images/capa-spider-man.jpg", progresso: "32%", conquistas: "12/42", iframeUrl: "https://jogos101.com/g/spider-man-web-shooter/embed" },
         { nome: "Horizon Forbidden West™ | PS5", fundo: "assets/images/fundo-horizon.jpg", capa: "assets/images/capa-horizon.jpg", progresso: "55%", conquistas: "18/58" },
         { nome: "Ratchet & Clank™ | PS5", fundo: "assets/images/fundo-ratchet-clank.jpg", capa: "assets/images/capa-ratchet-clank.jpg", progresso: "20%", conquistas: "7/32" },
         { nome: "Rocket Goal.io | Jogo", fundo: "assets/images/fundo-rocket-goal.jpg", capa: "assets/images/capa-rocket-goal.jpg", progresso: "—", conquistas: "—", iframeUrl: "https://rocketgoal.io" },
@@ -594,46 +712,6 @@
           progresso: "—", 
           conquistas: "—", 
           iframeUrl: "https://eymenwsmc.site/120/?v=20260824-5430efd6" 
-        },
-        { 
-          nome: "Among Us™ | Online", 
-          fundo: "assets/images/fundo-amongus.jpg", 
-          capa: "assets/images/capa-amongus.jpg", 
-          progresso: "—", 
-          conquistas: "—", 
-          iframeUrl: "https://amongusplay.online/" 
-        },
-        { 
-          nome: "Stopots™ | Jogos Online", 
-          fundo: "assets/images/fundo-stopots.jpg", 
-          capa: "assets/images/capa-stopots.jpg", 
-          progresso: "—", 
-          conquistas: "—", 
-          iframeUrl: "https://m.stopots.com/pt" 
-        },
-        { 
-          nome: "Free Fire™ | 9º Aniversário", 
-          fundo: "assets/images/fundo-freefire.jpg", 
-          capa: "assets/images/capa-freefire.jpg", 
-          progresso: "—", 
-          conquistas: "—", 
-          iframeUrl: "https://web.cloudmoonapp.com/pt/game/com.dts.freefireth/?from=list" 
-        },
-        { 
-          nome: "Roblox™ | Metaverso", 
-          fundo: "assets/images/fundo-roblox.jpg", 
-          capa: "assets/images/capa-roblox.jpg", 
-          progresso: "—", 
-          conquistas: "—", 
-          iframeUrl: "https://web.cloudmoonapp.com/pt/game/com.roblox.client/?from=list" 
-        },
-        { 
-          nome: "EscapeWaves.io | Tsunami Brainrot", 
-          fundo: "assets/images/fundo-escapewaves.jpg", 
-          capa: "assets/images/capa-escapewaves.jpg", 
-          progresso: "—", 
-          conquistas: "—", 
-          iframeUrl: "https://escapewaves.io/" 
         }
     ];
 
@@ -694,6 +772,26 @@
         gameIframe.src = "";
     });
 
+    // === AÇÃO AO CLICAR NO BOTÃO NEW USER ===
+    document.getElementById('new-user-btn').addEventListener('click', () => {
+        // Esconde a tela inicial
+        document.getElementById('start-screen').classList.add('hidden');
+        
+        // Mostra a interface principal com animação em cascata
+        setTimeout(() => {
+            document.getElementById('game-bg').classList.add('visible');
+            document.getElementById('bg-overlay').classList.add('visible');
+            document.getElementById('main-header').classList.add('visible');
+            document.getElementById('carousel-viewport').classList.add('visible');
+            document.getElementById('game-title').classList.add('visible');
+            document.getElementById('play-button-container').classList.add('visible');
+            document.getElementById('side-info-container').classList.add('visible');
+            
+            // Inicializa o carrossel depois que aparece
+            setTimeout(atualizarCarrossel, 100);
+        }, 300);
+    });
+
     let touchStartX = 0;
     document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
     document.addEventListener('touchend', e => {
@@ -719,10 +817,8 @@
         }
     });
 
-    window.addEventListener('load', atualizarCarrossel);
     window.addEventListener('resize', atualizarCarrossel);
   </script>
 
 </body>
 </html>
-
